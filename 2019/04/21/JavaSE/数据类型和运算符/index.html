@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ZhaoJiu&#39;s Studio</title>
+    <title>JAVA SE 02 数据类型和运算符 · ZhaoJiu&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">ZhaoJiu&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">JAVA SE 02 数据类型和运算符</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">ZhaoJiu's Studio.</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            JAVA SE 02 数据类型和运算符
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">477</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,244 +393,174 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/正则表达式/">
-            
-                <span>JAVA SE 14 异常处理</span>
-        </a>
-        <div class="abstract-content">
-            <p>正则表达式是用来处理字符串，是处理字符串的利器。<br>
-        </p></div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h4 id="常见的进制有那些？"><a href="#常见的进制有那些？" class="headerlink" title="常见的进制有那些？"></a>常见的进制有那些？</h4><a id="more"></a>
+<p>&emsp;&emsp;二进制(0b~) 八进制(0~) 十进制(~) 十六进制(0x~)</p>
+<h4 id="位、字节、字符的概念"><a href="#位、字节、字符的概念" class="headerlink" title="位、字节、字符的概念"></a>位、字节、字符的概念</h4><p>&emsp;&emsp;位是计算机存储数据的基本单位，代表一个二进制数位。[0,1]<br>&emsp;&emsp;八位二进制数位组成一个字节，可以存放一个西文字符编码[-127,128]<br>&emsp;&emsp;单引号圈起来的数组用来表示一个字符常量(‘A’)[0,65535]</p>
+<h4 id="基本数据类型的取值范围？"><a href="#基本数据类型的取值范围？" class="headerlink" title="基本数据类型的取值范围？"></a>基本数据类型的取值范围？</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>字节数</th>
+<th>取值范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>1</td>
+<td>[-pow(2,8),pow(2,8)-1]</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+<td>[-pow(2,16),pow(2,16)-1]</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+<td>[-pow(2,32),pow(2,32)-1]</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8</td>
+<td>[-pow(2,64),pow(2,64)-1]</td>
+</tr>
+</tbody>
+</table>
+<p>float和double分别占用4个字节和8ge字节<br>boolean类型占用1位而不是一字节</p>
+<h4 id="运算符有？"><a href="#运算符有？" class="headerlink" title="运算符有？"></a>运算符有？</h4><table>
+<thead>
+<tr>
+<th>种类</th>
+<th>运算符</th>
+<th>名称</th>
+<th>事例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一目(运算)运算符</td>
+<td>+ - * /  % =</td>
+<td>加减乘除取余赋值</td>
+<td>最基本的一目运算符 </td>
+</tr>
+<tr>
+<td>一目(逻辑)运算符</td>
+<td>–</td>
+<td>位逻辑或</td>
+<td>0b1010 – 0b0110 = 0b1110</td>
+</tr>
+<tr>
+<td>一目(逻辑)运算符</td>
+<td><code>&amp;</code></td>
+<td>位逻辑与</td>
+<td>0b1010 <code>&amp;</code> 0b0110 = 0b0010</td>
+</tr>
+<tr>
+<td>一目(逻辑)运算符</td>
+<td><code>!</code></td>
+<td>位逻辑非</td>
+<td><code>!</code> 0b0110 = 0b1001 !true = false</td>
+</tr>
+<tr>
+<td>一目(逻辑)运算符</td>
+<td><code>^</code></td>
+<td>位异或运算</td>
+<td>0b1001 <code>^</code>ob1001 = 0b0000</td>
+</tr>
+<tr>
+<td>总结其上4个</td>
+<td></td>
+<td></td>
+<td>上述4个还可以做为逻辑运算符</td>
+</tr>
+<tr>
+<td>二目运算符</td>
+<td><code>+=</code> <code>-=</code> … <code>!=</code> <code>&amp;=</code></td>
+<td>组合运算符</td>
+<td>自己了解</td>
+</tr>
+<tr>
+<td>二目运算符</td>
+<td>—-</td>
+<td>短路或</td>
+<td>前一个为true，则后一个不执行</td>
+</tr>
+<tr>
+<td>二目运算符</td>
+<td><code>&amp;&amp;</code></td>
+<td>短路与</td>
+<td>前一个为false，则后一个不执行</td>
+</tr>
+<tr>
+<td>二目运算符</td>
+<td><code>++</code> <code>--</code></td>
+<td>自增 自减</td>
+<td></td>
+</tr>
+<tr>
+<td>二目运算符</td>
+<td><code>&gt;&gt;</code> <code>&lt;&lt;</code></td>
+<td>位移运算</td>
+<td>5&lt;&lt;2 = 5 <em>2 </em>2</td>
+</tr>
+<tr>
+<td>三目运算符</td>
+<td><code>&gt;&gt;&gt;</code></td>
+<td>无符号右移动，空位补0</td>
+<td>了解</td>
+</tr>
+</tbody>
+</table>
+<h4 id="自动类型转换？"><a href="#自动类型转换？" class="headerlink" title="自动类型转换？"></a>自动类型转换？</h4><p>&emsp;&emsp;低精度的数据可以自动转换成高精度的数据，高精度的数据则必须强制类型转换成低精度的数据，并且可能会造成数据的丢失。</p>
+<p>​    </p>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/线程池/">
-            
-                <span>JAVA SE 13  线程池</span>
-        </a>
-        <div class="abstract-content">
-            <p>什么是线程池？<br>
-        </p></div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://ZhaoJiu.github.io">ZhaoJiu</a>
+            </p><p>原文链接：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/数据类型和运算符/">http://ZhaoJiu.github.io/2019/04/21/JavaSE/数据类型和运算符/</a>
+            </p><p>发表日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/数据类型和运算符/">April 21st 2019, 7:56:19 pm</a>
+            </p><p>更新日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/数据类型和运算符/">April 21st 2019, 8:11:14 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/java内部类/">
-            
-                <span>JAVA SE 12 内部类</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="内部类的种类？"><a href="#内部类的种类？" class="headerlink" title="内部类的种类？"></a>内部类的种类？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/网络编程/">
-            
-                <span>JAVA SE 11 网络编程</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="什么是计算机网络？"><a href="#什么是计算机网络？" class="headerlink" title="什么是计算机网络？"></a>什么是计算机网络？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/多线程/">
-            
-                <span>JAVA SE 10 多线程</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="程序、线程和进程的区别是什么？"><a href="#程序、线程和进程的区别是什么？" class="headerlink" title="程序、线程和进程的区别是什么？"></a>程序、线程和进程的区别是什么？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/io流技术/">
-            
-                <span>JAVA SE 09 IO流技术</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="IO是什么意思？"><a href="#IO是什么意思？" class="headerlink" title="IO是什么意思？"></a>IO是什么意思？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/java容器/">
-            
-                <span>JAVA SE 08 java容器</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="Collection-Set-List的联系和区别？"><a href="#Collection-Set-List的联系和区别？" class="headerlink" title="Collection/Set/List的联系和区别？"></a>Collection/Set/List的联系和区别？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/java常用类/">
-            
-                <span>JAVA SE 07 java常用类</span>
-        </a>
-        <div class="abstract-content">
-            <h5 id="为什么需要包装类，包装类的作用是什么？"><a href="#为什么需要包装类，包装类的作用是什么？" class="headerlink" title="为什么需要包装类，包装类的作用是什么？"></a>为什么需要包装类，包装类的作用是什么？</h5>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/异常处理/">
-            
-                <span>JAVA SE 06 异常处理</span>
-        </a>
-        <div class="abstract-content">
-            <h4 id="处理异常的两大步是？"><a href="#处理异常的两大步是？" class="headerlink" title="处理异常的两大步是？"></a>处理异常的两大步是？</h4>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/面向对象/">
-            
-                <span>JAVA SE 04 面向对象</span>
-        </a>
-        <div class="abstract-content">
-            <p>&emsp;&emsp;java面向对象三大特性：封装、继承、多态。<br>
-        </p></div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/21/JavaSE/控制语句/" title="JAVA SE 03 控制语句">
+                    <div class="nextTitle">JAVA SE 03 控制语句</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/21/JavaSE/初始java/" title="JAVA SE 01 初始java">
+                    <div class="prevTitle">JAVA SE 01 初始java</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -653,6 +638,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的进制有那些？"><span class="toc-number">1.</span> <span class="toc-text">常见的进制有那些？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#位、字节、字符的概念"><span class="toc-number">2.</span> <span class="toc-text">位、字节、字符的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本数据类型的取值范围？"><span class="toc-number">3.</span> <span class="toc-text">基本数据类型的取值范围？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运算符有？"><span class="toc-number">4.</span> <span class="toc-text">运算符有？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自动类型转换？"><span class="toc-number">5.</span> <span class="toc-text">自动类型转换？</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1111,6 +1114,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

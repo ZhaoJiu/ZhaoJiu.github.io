@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="ZhaoJiu">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="ZhaoJiu">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>JAVA SE 11 网络编程 · ZhaoJiu&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">ZhaoJiu&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">JAVA SE 11 网络编程</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">ZhaoJiu's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            JAVA SE 11 网络编程
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h6 id="什么是计算机网络？"><a href="#什么是计算机网络？" class="headerlink" title="什么是计算机网络？"></a>什么是计算机网络？</h6><a id="more"></a>
+<p>计算机网络是将不同地理位置的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统。</p>
+<h6 id="按计算机网络的地理覆盖范围分类？"><a href="#按计算机网络的地理覆盖范围分类？" class="headerlink" title="按计算机网络的地理覆盖范围分类？"></a>按计算机网络的地理覆盖范围分类？</h6><ul>
+<li><p>局域网（Local Area Network，LAN）：</p>
+<ul>
+<li>地理范围一般在10km以内，属于一个组织，一个单位或一个部门所有。如：一个企业，一所学校，一座大楼，一间实验室等。<br>  这种网络一般不对外提供公共服务，管理方便，安全保密性好。<br>  组建方便，投资少，见效快，使用灵活，是计算机网络中发展最快，应用最普遍的计算机网络。<br>  与广域网相比，传输速率快，通常100Mbps以上；误码率低。</li>
+</ul>
+</li>
+<li><p>城域网（Metropolitan Area Network，MAN）：</p>
+<ul>
+<li>介于局域网和广域网之间，地理范围覆盖几十km到几百km不等，可能是一个地区或一个城市。</li>
+</ul>
+</li>
+<li><p>广域网（Wide Area Network，WAN）：</p>
+<ul>
+<li>地理范围一般从几十km到几万km不等，小到一个地区，一个城市，大到一个国家，几个国家乃至全世界。<br>  提供大范围的公共服务。因特网就是典型的广域网。<br>  与局域网相比，广域网投资大，安全保密性差，传输速率慢,通常为64kbps,2Mbps,10Mbps;误码率高。</li>
+</ul>
+</li>
+</ul>
+<h6 id="按计算机网络的拓扑结构分类？"><a href="#按计算机网络的拓扑结构分类？" class="headerlink" title="按计算机网络的拓扑结构分类？"></a>按计算机网络的拓扑结构分类？</h6><p>拓扑结构是数学上的一个名词，从英文Topology音译过来的。在这里，指的是网络传输介质和节点的连接形式，即线路构成的几何形状。</p>
+<ul>
+<li><p>总线型：</p>
+<ul>
+<li>该结构采用一条公共总线作为传输介质，每台计算机通过相应的硬件接口入网。信号沿总线进行广播式传送。<br>  是典型的共享传输介质的网络。从信源所发的信息会传送到介质长度所及之处，被其他所有站点看到。如果有两个以上的节点同时发送数据，可能会造成冲突，就像公路上的两车相撞一样。</li>
+<li>优点：<br>  布线容易；增删容易；节约电缆；</li>
+<li>缺点：<ul>
+<li>任何两个站点传送信息都要经过总线，总线称为传输瓶颈；当计算机站点多时，容易造成信息阻塞，传递不畅。</li>
+<li>一台计算机接入总线的接口发生故障，会造成整个网络瘫痪。</li>
+<li>当网络发生故障时，故障诊断和隔离困难。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>星型：</p>
+<ul>
+<li>由一台中央节点和周围的从节点组成。中央节点和从节点可以直接通信，而从节点必须经过中央节点转接才能通信。</li>
+<li>优点：<ul>
+<li>I 可靠性高。每台计算机及其接口的故障不会影响其他计算机，不会影响整个网络，也不会造成网络瘫痪。</li>
+<li>II 故障诊断和隔离容易，网络容易管理和维护。</li>
+<li>III 可扩性好，配置灵活。增删改一个站点容易实现，和其他计算机没有关系。</li>
+<li>IV 传输速率高。每个节点独占一条线路，消除了信息阻塞的情况。而总线和环形网络的瓶颈都在线路上。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>I 线缆使用量大。</li>
+<li>II 布线、安装工作量大。</li>
+<li>III 网络可靠性依赖于中央节点。如交换机或集线器选择不当，发生故障会造成全网瘫痪。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>环型：</p>
+<ul>
+<li>计算机通过硬件接口入网，这些接口收尾相连成一条链路。信息传送也是广播式的，沿着一个方向（如逆时针方向）单向逐点传送。</li>
+<li>优点：<ul>
+<li>I 点到点且沿一个方向单向传输，非常适合用光纤作为传输介质。</li>
+<li>II 传输距离远，适合做主干网。</li>
+<li>III 故障诊断容易定位。</li>
+<li>IV 初始安装容易，线缆用量少。环形线路也是一条总线，只是首尾封闭。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="按传输介质分"><a href="#按传输介质分" class="headerlink" title="按传输介质分?"></a>按传输介质分?</h6><ul>
+<li>有线网络：<ul>
+<li>同轴电缆：成本低，安装方便，但传输率低，抗干扰能力一般，传输距离短；</li>
+<li>双绞线：<ul>
+<li>组建局域网时常用，优缺点类似于同轴电缆。</li>
+</ul>
+</li>
+<li>光纤：<ul>
+<li>主要用于网络的主干部分，其特点是成本高，安装技术要求高，传输距离长，传输率高，抗干扰能力强，且不会受到电子监听设备的监听等，是组建高安全性网络的理想选择。</li>
+</ul>
+</li>
+<li>无线网络：<ul>
+<li>红外线；</li>
+<li>微波；</li>
+<li>无线电；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="常见的网络分层模型有哪两个？哪个更流行？为什么？"><a href="#常见的网络分层模型有哪两个？哪个更流行？为什么？" class="headerlink" title="常见的网络分层模型有哪两个？哪个更流行？为什么？"></a>常见的网络分层模型有哪两个？哪个更流行？为什么？</h6><ul>
+<li>OSI/ISO 参考模型:<ul>
+<li>OSI参考模型把网络模型分成7层，每一层为上一层提供服务，并为其上一层提供一个访问接口或界面。</li>
+</ul>
+</li>
+<li>TCP/IP协议栈：<ul>
+<li>4层网络模型。OSI参考模型设计得过于庞大、复杂，不易被付诸应用。相比之下，由技术人员自己开发的TCP/IP协议栈获得了更为广泛的应用。</li>
+</ul>
+</li>
+</ul>
+<h6 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h6><ul>
+<li><p>TCP：</p>
+<ul>
+<li>一种面向连接（连接导向）的、可靠的、基于字节流的传输层（Transport layer）通信协议 。</li>
+<li>特点：<ul>
+<li>面向连接；</li>
+<li>点到点的通信；</li>
+<li>高可靠性；</li>
+<li>占用系统资源多、效率低；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>UDP：</p>
+<ul>
+<li>一种无连接的、提供面向事务的简单不可靠信息传送服务的传输层通信协议。</li>
+<li>特点:<ul>
+<li>非面向连接</li>
+<li>传输不可靠，可能丢失</li>
+<li>发送不管对方是否准备好，接收方收到也不确认</li>
+<li>可以广播发送</li>
+<li>非常简单的协议，开销小</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="详细描述TCP三次握手机制。"><a href="#详细描述TCP三次握手机制。" class="headerlink" title="详细描述TCP三次握手机制。"></a>详细描述TCP三次握手机制。</h6><ul>
+<li><p>第一次握手：</p>
+<ul>
+<li>客户端发送连接请求给服务器端，等候服务器端确认；</li>
+</ul>
+</li>
+<li><p>第二次握手：</p>
+<ul>
+<li>服务器端收到客户端发来的请求，向客户端发送确认连接信息</li>
+</ul>
+</li>
+<li><p>第三次握手：</p>
+<ul>
+<li>客户端接到服务器端发送来的确认连接信息，也要向服务器端再发送一次确认连接信息。至此三次握手完成。客户端和服务器端进入准备传送数据状态。</li>
+</ul>
+</li>
+</ul>
+<h6 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h6><ul>
+<li>IP：<ul>
+<li>Internet Protocol address，互联网协议地址。<br>  IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址。<br>IP的作用：<br>  用来标志网络中的一个通信实体的地址。通信实体可以是计算机，路由器等。</li>
+</ul>
+</li>
+</ul>
+<h6 id="IPV4为什么会发生资源枯竭的问题"><a href="#IPV4为什么会发生资源枯竭的问题" class="headerlink" title="IPV4为什么会发生资源枯竭的问题?"></a>IPV4为什么会发生资源枯竭的问题?</h6><p>IPV4规定IP地址长度为32位, 即有2^32-1个地址(大约40亿多一点)；而随着互联网的迅速发展，这个数量很可能满足不了未来的需求。<br>    解决：IPv6。IP地址的长度为128，即有2^128-1个地址。</p>
+<h6 id="为什么需要端口-端口是真实存在的还是虚拟的概念"><a href="#为什么需要端口-端口是真实存在的还是虚拟的概念" class="headerlink" title="为什么需要端口?端口是真实存在的还是虚拟的概念?"></a>为什么需要端口?端口是真实存在的还是虚拟的概念?</h6><p>IP地址用来标志一台计算机，但是一台计算机上可能提供多种网络应用程序，使用端口来区分这些应用程序。<br>    端口是虚拟的概念，并不是说在主机上真的有若干个端口。通过端口，可以在一个主机上运行多个网络应用程序。<br>    端口范围0—65535,16位整数。</p>
+<h6 id="UDP和TCP端口是各自独立的吗"><a href="#UDP和TCP端口是各自独立的吗" class="headerlink" title="UDP和TCP端口是各自独立的吗?"></a>UDP和TCP端口是各自独立的吗?</h6><p>由于TCP/IP传输层的两个协议TCP和UDP是完全独立的两个软件模块，因此各自的端口号也相互独立，如TCP有一个255号端口，UDP也可以有一个255号端口，二者并不冲突。</p>
+<h6 id="InetAddress和InetSocketAddress都封装了哪些信息-他们两的区别是"><a href="#InetAddress和InetSocketAddress都封装了哪些信息-他们两的区别是" class="headerlink" title="InetAddress和InetSocketAddress都封装了哪些信息? 他们两的区别是?"></a>InetAddress和InetSocketAddress都封装了哪些信息? 他们两的区别是?</h6><p>InetAddress：封装计算机的IP地址 ,没有端口。</p>
+<p>InetSocketAddress：包含IP地址和端口信息，用于Socket通信的。</p>
+<h6 id="URL类有什么作用"><a href="#URL类有什么作用" class="headerlink" title="URL类有什么作用?"></a>URL类有什么作用?</h6><pre><code>URL：
+    Uniform Resource Locator
+统一资源定位器；俗称&quot;网址&quot;，如：
+    &quot;http://www.baidu.com:80/index.html#aa?cansu=bjsxt&quot;
+由4部分组成：
+    协议： http
+    存放资源的主机域名：www.baidu.com
+    端口号:80
+    资源文件名: index.html#aa?cansu=bjsxt
+URL是指向互联网&quot;资源&quot;的指针。资源可以是简单的文件或目录，也可以是对更为复杂的对象的引用，例如对数据库或搜索引擎的查询。
+</code></pre><h6 id="如何理解Socket的含义"><a href="#如何理解Socket的含义" class="headerlink" title="如何理解Socket的含义?"></a>如何理解Socket的含义?</h6><ul>
+<li><p>所谓socket通常也称作”套接字”，用于描述IP地址和端口，是一个通信链的句柄。应用程序通常通过”套接字”向网络发出请求或者应答网络请求。</p>
+</li>
+<li><p>我们开发的网络应用程序位于应用层，TCP和UDP属于传输层协议，在应用层如何使用传输层的服务呢？在应用层和传输层之间，则是使用套接字来进行分离。</p>
+</li>
+<li><p>套接字就像是传输层为应用层开的一个小口，应用程序通过这个小口向远程发送数据，或者接收远程发来的数据；而这个小口以内，也就是数据进入这个口之后，或者数据从这个口出来之前，是不知道也不需要知道的，也不会关心它如何传输，这属于网络其它层次的工作。</p>
+</li>
+<li><p>Socket实际是传输层供给应用层的编程接口。传输层则在网络层的基础上提供进程到进程问的逻辑通道，而应用层的进程则利用传输层向另一台主机的某一进程通信。Socket就是应用层与传输层之间的桥梁。</p>
+</li>
+<li><p>使用Socket编程可以开发客户机和服务器应用程序，可以在本地网络上进行通信，也可通过Internet在全球范围内通信。</p>
+</li>
+</ul>
+<h6 id="基于TCP的Socket网络编程的主要步骤是什么？"><a href="#基于TCP的Socket网络编程的主要步骤是什么？" class="headerlink" title="基于TCP的Socket网络编程的主要步骤是什么？"></a>基于TCP的Socket网络编程的主要步骤是什么？</h6><p>Java分别为TCP和UDP 两种通信协议提供了相应的Socket编程类，这些类存放在java.net包中。</p>
+<p>与TCP对应的是服务器的ServerSocket和客户端的Socket，与UDP对应的是DatagramSocket。</p>
+<p>基于TCP创建的套接字可以叫做流套接字，服务器端相当于一个监听器，用来监听端口。</p>
+<p>服务器与客服端之间的通讯都是输入输出流来实现的。<br>    基于UDP的套接字就是数据报套接字， 两个都要先构造好相应的数据包。</p>
+<h6 id="基于TCP协议的Socket编程的主要步骤"><a href="#基于TCP协议的Socket编程的主要步骤" class="headerlink" title="基于TCP协议的Socket编程的主要步骤"></a>基于TCP协议的Socket编程的主要步骤</h6><p>基于TCP协议的Socket编程的主要步骤</p>
+<p>服务器端（server）：</p>
+<p>1.构建一个ServerSocket实例，指定本地的端口。这个socket就是用来监听指定端口的连接请求的。</p>
+<p>2.重复如下几个步骤：</p>
+<ul>
+<li>a. 调用socket的accept()方法来获得下面客户端的连接请求。通过accept()方法返回的socket实例，建立了一个和客户端的新连接。</li>
+<li>b.通过这个返回的socket实例获取InputStream和OutputStream,可以通过这两个stream来分别读和写数据。</li>
+<li>c.结束的时候调用socket实例的close()方法关闭socket连接。</li>
+</ul>
+<p>客户端（client）：</p>
+<ul>
+<li>1.构建Socket实例，通过指定的远程服务器地址和端口来建立连接。</li>
+<li>2.通过Socket实例包含的InputStream和OutputStream来进行数据的读写。</li>
+<li>3.操作结束后调用socket实例的close方法，关闭。</li>
+</ul>
+<p>服务端代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>客户端代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>基于UDP协议的Socket编程的主要步骤</p>
+<p>服务器端（server）：</p>
+<ul>
+<li>1.构造DatagramSocket实例，指定本地端口。<br>   2.通过DatagramSocket实例的receive方法接收DatagramPacket.DatagramPacket中间就包含了通信的内容。<br>   3.通过DatagramSocket的send和receive方法来收和发DatagramPacket.</li>
+</ul>
+<p>客户端（client）：</p>
+<ul>
+<li>1.构造DatagramSocket实例。<br>   2.通过DatagramSocket实例的send和receive方法发送DatagramPacket报文。<br>   3.结束后，调用DatagramSocket的close方法关闭。</li>
+</ul>
+<p>服务端代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>客户端代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>如果后续有需要 在学习相关的操作。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://ZhaoJiu.github.io">ZhaoJiu</a>
+            </p><p>原文链接：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/网络编程/">http://ZhaoJiu.github.io/2019/04/21/JavaSE/网络编程/</a>
+            </p><p>发表日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/网络编程/">April 21st 2019, 7:56:20 pm</a>
+            </p><p>更新日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/网络编程/">April 21st 2019, 8:18:59 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/21/JavaSE/java内部类/" title="JAVA SE 12 内部类">
+                    <div class="nextTitle">JAVA SE 12 内部类</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/21/JavaSE/多线程/" title="JAVA SE 10 多线程">
+                    <div class="prevTitle">JAVA SE 10 多线程</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:zhaojiuvip@163.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/ZhaoJiu" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#什么是计算机网络？"><span class="toc-number">1.</span> <span class="toc-text">什么是计算机网络？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#按计算机网络的地理覆盖范围分类？"><span class="toc-number">2.</span> <span class="toc-text">按计算机网络的地理覆盖范围分类？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#按计算机网络的拓扑结构分类？"><span class="toc-number">3.</span> <span class="toc-text">按计算机网络的拓扑结构分类？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#按传输介质分"><span class="toc-number">4.</span> <span class="toc-text">按传输介质分?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#常见的网络分层模型有哪两个？哪个更流行？为什么？"><span class="toc-number">5.</span> <span class="toc-text">常见的网络分层模型有哪两个？哪个更流行？为什么？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#TCP与UDP"><span class="toc-number">6.</span> <span class="toc-text">TCP与UDP</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#详细描述TCP三次握手机制。"><span class="toc-number">7.</span> <span class="toc-text">详细描述TCP三次握手机制。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#IP"><span class="toc-number">8.</span> <span class="toc-text">IP</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#IPV4为什么会发生资源枯竭的问题"><span class="toc-number">9.</span> <span class="toc-text">IPV4为什么会发生资源枯竭的问题?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#为什么需要端口-端口是真实存在的还是虚拟的概念"><span class="toc-number">10.</span> <span class="toc-text">为什么需要端口?端口是真实存在的还是虚拟的概念?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#UDP和TCP端口是各自独立的吗"><span class="toc-number">11.</span> <span class="toc-text">UDP和TCP端口是各自独立的吗?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#InetAddress和InetSocketAddress都封装了哪些信息-他们两的区别是"><span class="toc-number">12.</span> <span class="toc-text">InetAddress和InetSocketAddress都封装了哪些信息? 他们两的区别是?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#URL类有什么作用"><span class="toc-number">13.</span> <span class="toc-text">URL类有什么作用?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#如何理解Socket的含义"><span class="toc-number">14.</span> <span class="toc-text">如何理解Socket的含义?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#基于TCP的Socket网络编程的主要步骤是什么？"><span class="toc-number">15.</span> <span class="toc-text">基于TCP的Socket网络编程的主要步骤是什么？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#基于TCP协议的Socket编程的主要步骤"><span class="toc-number">16.</span> <span class="toc-text">基于TCP协议的Socket编程的主要步骤</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 16
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/全栈计划/">JAVA EE + 高级架构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/正则表达式/">JAVA SE 14 异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/网络编程/">JAVA SE 11 网络编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java内部类/">JAVA SE 12 内部类</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/线程池/">JAVA SE 13  线程池</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/控制语句/">JAVA SE 03 控制语句</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/多线程/">JAVA SE 10 多线程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/io流技术/">JAVA SE 09 IO流技术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java常用类/">JAVA SE 07 java常用类</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java容器/">JAVA SE 08 java容器</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数组/">JAVA SE 04 数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数据类型和运算符/">JAVA SE 02 数据类型和运算符</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/初始java/">JAVA SE 01 初始java</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/index/">JAVA SE 总览</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/异常处理/">JAVA SE 06 异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/面向对象/">JAVA SE 04 面向对象</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Jenkins"><span class="iconfont-archer">&#xe606;</span>Jenkins</span>
+    
+        <span class="sidebar-tag-name" data-tags="Github"><span class="iconfont-archer">&#xe606;</span>Github</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="持续集成"><span class="iconfont-archer">&#xe606;</span>持续集成</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "ZhaoJiu"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

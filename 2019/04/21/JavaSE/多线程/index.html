@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ZhaoJiu&#39;s Studio</title>
+    <title>JAVA SE 10 多线程 · ZhaoJiu&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">ZhaoJiu&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">JAVA SE 10 多线程</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">ZhaoJiu's Studio.</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            JAVA SE 10 多线程
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,244 +393,88 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/正则表达式/">
-            
-                <span>JAVA SE 14 异常处理</span>
-        </a>
-        <div class="abstract-content">
-            <p>正则表达式是用来处理字符串，是处理字符串的利器。<br>
-        </p></div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h6 id="程序、线程和进程的区别是什么？"><a href="#程序、线程和进程的区别是什么？" class="headerlink" title="程序、线程和进程的区别是什么？"></a>程序、线程和进程的区别是什么？</h6><a id="more"></a>
+<ul>
+<li>程序：程序是一条指令的集合。程序不能独立执行，只有被加载到内存中，系统为它分配好资源后才能执行。</li>
+<li>进程：一个执行中的程序称为进程。进程是系统分配资源的独立单位，每个进程占有特定的地址空间。</li>
+<li>线程：是CPU调度和分配的基本单位，是比进程更小的独立运行的基本单位，也被称为轻量级的进程。</li>
+<li>线程不能独立存在，必须依附于某个进程。一个进程可以包括多个并发的线程，一个线程只属于一个进程，JVM允许应用程序并发执行多个线程。</li>
+</ul>
+<h6 id="java通过那些方法创建多线程？"><a href="#java通过那些方法创建多线程？" class="headerlink" title="java通过那些方法创建多线程？"></a>java通过那些方法创建多线程？</h6><pre><code>1 继承Thread类，重写run方法，创建多线程
+2 实现Runnable接口，实现run方法，创建多线程
+Thread类也是实现了Runnable接口
+</code></pre><h6 id="当调用一个线程start方法的时候，线程马上进入运行状态吗？"><a href="#当调用一个线程start方法的时候，线程马上进入运行状态吗？" class="headerlink" title="当调用一个线程start方法的时候，线程马上进入运行状态吗？"></a>当调用一个线程start方法的时候，线程马上进入运行状态吗？</h6><pre><code>不是，此时线程进入的是就绪(可运行)状态，等待分配cpu时间片。一旦得到cpu时间片，即进入到运行态。
+</code></pre><h6 id="sleep、yield、join方法的区别？"><a href="#sleep、yield、join方法的区别？" class="headerlink" title="sleep、yield、join方法的区别？"></a>sleep、yield、join方法的区别？</h6><ul>
+<li>sleep(times):在指定的时间内让线程暂停执行，进入到阻塞状态。在指定的时间后到达就绪状态，调用sleep方法的时候，释放cpu不释放锁。（如果对象有锁的话）</li>
+<li>yield():调用该方法后，线程暂停一下，回到就绪状态。所以调用该方法的线程很可能进入就绪状态马上又被执行。</li>
+<li>join():当前线程等待调用此方法的线程执行结束后在继续执行。</li>
+</ul>
+<h6 id="为什么不推荐stop和destory方法来结束线程？"><a href="#为什么不推荐stop和destory方法来结束线程？" class="headerlink" title="为什么不推荐stop和destory方法来结束线程？"></a>为什么不推荐stop和destory方法来结束线程？</h6><ul>
+<li>stop()：stop方法时强制一个正在运行或是等待的线程关闭。但是stop方法不安全，就像切断电源关闭计算机一样。会产生不可预料的后果。而且强制中止的进程中的数据也可能对在多线程中其它的操作有所影响。</li>
+<li>destory():该方法最初是用作破坏该线程，但不做任何资源的释放，它所保持的任何监视器都会保持锁定状态。不过，该方法绝不会被实现，即使实现，也极有可能以suspend()方式死锁。</li>
+</ul>
+<h6 id="synchronized修饰在方法前是什么意思？"><a href="#synchronized修饰在方法前是什么意思？" class="headerlink" title="synchronized修饰在方法前是什么意思？"></a>synchronized修饰在方法前是什么意思？</h6><p>一次只能有一个线程进入该方法，其它线程想要在此时调用该方法，只能排队等候。</p>
+<h6 id="什么是死锁？"><a href="#什么是死锁？" class="headerlink" title="什么是死锁？"></a>什么是死锁？</h6><p>过多的线程同步会引起死锁。如2个线程都在等待对方释放锁才能继续执行。</p>
+<h6 id="死锁代码："><a href="#死锁代码：" class="headerlink" title="死锁代码："></a>死锁代码：</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class DeathBlock&#123;</span><br><span class="line">	Object A = <span class="keyword">new</span> Object();</span><br><span class="line">	Object B = <span class="keyword">new</span> Object();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testEast</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">synchronized</span>(A) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(B) &#123;</span><br><span class="line">				System.out.println(<span class="string">"向东行驶..."</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testWest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">synchronized</span>(B)&#123;</span><br><span class="line">			<span class="keyword">synchronized</span>(A)&#123;</span><br><span class="line">				System.out.println(<span class="string">"向西行驶..."</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Class ToWestThread extends Thread &#123;</span><br><span class="line">	DeathBlock deathBlock = <span class="keyword">new</span> DeathBlock();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ToWestThread</span><span class="params">(DeathBlock deathBlock)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.deathBlock = deathBlock;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		d.testWest();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Class ToEastThread extends Thread &#123;</span><br><span class="line">	DeathBlock deathBlock = <span class="keyword">new</span> DeathBlock();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ToEastThread</span><span class="params">(DeathBlock deathBlock)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.deathBlock = deathBlock;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		d.testEast();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Class Test&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		DeathBlock deathBlock = <span class="keyword">new</span> DeathBlock();</span><br><span class="line">		ToWestThread twt = <span class="keyword">new</span> ToWestThread(deathBlock);</span><br><span class="line">		ToEastThread tet = <span class="keyword">new</span> ToEastThread(deathBlock);</span><br><span class="line">		twt.start();</span><br><span class="line">		tet.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="wait和sleep的区别？"><a href="#wait和sleep的区别？" class="headerlink" title="wait和sleep的区别？"></a>wait和sleep的区别？</h6><ul>
+<li>wait():wait方法释放CPU，释放锁</li>
+<li>sleep():sleep方法释放CPU，不释放锁</li>
+</ul>
+<h6 id="wait、notify、notifyAll方法。"><a href="#wait、notify、notifyAll方法。" class="headerlink" title="wait、notify、notifyAll方法。"></a>wait、notify、notifyAll方法。</h6><ul>
+<li>上述三个方法不属于Thread类，而是属于Object类，所以每个对象都有。因而每个对象都有锁，锁是每个对象的基础功能，上述3者是和锁有关的方法。</li>
+<li><p>wait():导致当前对象陷入等待，进入阻塞状态，直到其它线程调用该对象的notify()或notifyAll()方法。当前线程必须拥有此对象监视器(对象锁)。 该线程释放对此线程的监视器并等待，直到其它方法调用notify或notifyAll通知此对象的监视器的线程醒来，然后该线程重新获得对监视器的所有权后才能继续执行。</p>
+</li>
+<li><p>notify():唤醒在此对象监视器(对象锁)上等待的单个线程，如果所有线程都在此对象上，则会选择性唤醒一条线程。直到当前线程放弃对此对象的锁定，才能继续执行被唤醒的线程。此方法只应由做为此对象监视器的所有者的线程来调用。</p>
+</li>
+<li>notifyAll():唤醒在此对象监视器上等待的所有线程。</li>
+</ul>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/线程池/">
-            
-                <span>JAVA SE 13  线程池</span>
-        </a>
-        <div class="abstract-content">
-            <p>什么是线程池？<br>
-        </p></div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://ZhaoJiu.github.io">ZhaoJiu</a>
+            </p><p>原文链接：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/多线程/">http://ZhaoJiu.github.io/2019/04/21/JavaSE/多线程/</a>
+            </p><p>发表日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/多线程/">April 21st 2019, 7:56:20 pm</a>
+            </p><p>更新日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/多线程/">April 21st 2019, 8:16:19 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/java内部类/">
-            
-                <span>JAVA SE 12 内部类</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="内部类的种类？"><a href="#内部类的种类？" class="headerlink" title="内部类的种类？"></a>内部类的种类？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/网络编程/">
-            
-                <span>JAVA SE 11 网络编程</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="什么是计算机网络？"><a href="#什么是计算机网络？" class="headerlink" title="什么是计算机网络？"></a>什么是计算机网络？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/多线程/">
-            
-                <span>JAVA SE 10 多线程</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="程序、线程和进程的区别是什么？"><a href="#程序、线程和进程的区别是什么？" class="headerlink" title="程序、线程和进程的区别是什么？"></a>程序、线程和进程的区别是什么？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/io流技术/">
-            
-                <span>JAVA SE 09 IO流技术</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="IO是什么意思？"><a href="#IO是什么意思？" class="headerlink" title="IO是什么意思？"></a>IO是什么意思？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/java容器/">
-            
-                <span>JAVA SE 08 java容器</span>
-        </a>
-        <div class="abstract-content">
-            <h6 id="Collection-Set-List的联系和区别？"><a href="#Collection-Set-List的联系和区别？" class="headerlink" title="Collection/Set/List的联系和区别？"></a>Collection/Set/List的联系和区别？</h6>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/java常用类/">
-            
-                <span>JAVA SE 07 java常用类</span>
-        </a>
-        <div class="abstract-content">
-            <h5 id="为什么需要包装类，包装类的作用是什么？"><a href="#为什么需要包装类，包装类的作用是什么？" class="headerlink" title="为什么需要包装类，包装类的作用是什么？"></a>为什么需要包装类，包装类的作用是什么？</h5>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/异常处理/">
-            
-                <span>JAVA SE 06 异常处理</span>
-        </a>
-        <div class="abstract-content">
-            <h4 id="处理异常的两大步是？"><a href="#处理异常的两大步是？" class="headerlink" title="处理异常的两大步是？"></a>处理异常的两大步是？</h4>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/21/JavaSE/面向对象/">
-            
-                <span>JAVA SE 04 面向对象</span>
-        </a>
-        <div class="abstract-content">
-            <p>&emsp;&emsp;java面向对象三大特性：封装、继承、多态。<br>
-        </p></div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/21/JavaSE/网络编程/" title="JAVA SE 11 网络编程">
+                    <div class="nextTitle">JAVA SE 11 网络编程</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/21/JavaSE/io流技术/" title="JAVA SE 09 IO流技术">
+                    <div class="prevTitle">JAVA SE 09 IO流技术</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -653,6 +552,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#程序、线程和进程的区别是什么？"><span class="toc-number">1.</span> <span class="toc-text">程序、线程和进程的区别是什么？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#java通过那些方法创建多线程？"><span class="toc-number">2.</span> <span class="toc-text">java通过那些方法创建多线程？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#当调用一个线程start方法的时候，线程马上进入运行状态吗？"><span class="toc-number">3.</span> <span class="toc-text">当调用一个线程start方法的时候，线程马上进入运行状态吗？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sleep、yield、join方法的区别？"><span class="toc-number">4.</span> <span class="toc-text">sleep、yield、join方法的区别？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#为什么不推荐stop和destory方法来结束线程？"><span class="toc-number">5.</span> <span class="toc-text">为什么不推荐stop和destory方法来结束线程？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#synchronized修饰在方法前是什么意思？"><span class="toc-number">6.</span> <span class="toc-text">synchronized修饰在方法前是什么意思？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#什么是死锁？"><span class="toc-number">7.</span> <span class="toc-text">什么是死锁？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#死锁代码："><span class="toc-number">8.</span> <span class="toc-text">死锁代码：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#wait和sleep的区别？"><span class="toc-number">9.</span> <span class="toc-text">wait和sleep的区别？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#wait、notify、notifyAll方法。"><span class="toc-number">10.</span> <span class="toc-text">wait、notify、notifyAll方法。</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1111,6 +1028,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

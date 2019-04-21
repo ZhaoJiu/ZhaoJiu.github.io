@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>english · ZhaoJiu&#39;s Studio</title>
+    <title>JAVA SE 12 内部类 · ZhaoJiu&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">ZhaoJiu&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">english</a>
+                <a href="#" class="post-name">JAVA SE 12 内部类</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            english
+            JAVA SE 12 内部类
             <!-- 404 -->
             
         </h1>
@@ -264,19 +264,9 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class="post-intro-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Jenkins">Jenkins</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="GitHub">GitHub</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="持续集成">持续集成</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">437</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -405,16 +395,26 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>我的世界</p>
+        <h6 id="内部类的种类？"><a href="#内部类的种类？" class="headerlink" title="内部类的种类？"></a>内部类的种类？</h6><a id="more"></a>
+<ol>
+<li><p>方法内部类</p>
+</li>
+<li><p>成员内部类<br> 定义在另一个类(外部类)的内部，而且和成员方法和属性平级。属于类的一个成员，可以使用private、默认、protected、public来修饰。<br> 外部类无法直接访问成员内部类的方法和属性，需要通过一个内部类的实例来访问。<br> 调用方式：外部类名.内部类名 实例名 = 外部类名.new 内部类构造方法(参数);</p>
+</li>
+<li>静态内部类<br> 被static修饰的成员内部类叫静态内部类。<br> 外部类名.内部类名 实例名 = new 外部类名.内部类名(参数)。</li>
+<li>局部内部类<br> 定义在代码块或方法体内的类叫局部内部类。<br> 局部内部类只能在代码块和方法体内使用（如创建对象和使用类对象等）。</li>
+<li>匿名内部类<br> 特殊的局部内部类。<br> 必须继承一个类（抽象的、非抽象的都可以）或者实现一个接口。<br> 如果父类（或者父接口）是抽象类，则匿名内部类必须实现其所有抽象方法。<br> 只能使用一次，创建实例之后，类定义会立即消失。创建：父类（接口） 实例名 = new 父类（）{//匿名内部类需要实现的功能。}<br> 匿名内部类不能再是抽象类，因为匿名内部类在定义之后，会立即创建一个实例。<br> 匿名内部类不能定义构造方法，匿名内部类没有类名，无法定义构造方法，但是，匿名内部类拥有与父类相同的所有构造方法。<br> 可以定义代码块，用于实例的初始化。</li>
+</ol>
+<p>只做了解。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://ZhaoJiu.github.io">ZhaoJiu</a>
-            </p><p>原文链接：<a href="http://ZhaoJiu.github.io/2019/04/21/mc/三角/">http://ZhaoJiu.github.io/2019/04/21/mc/三角/</a>
-            </p><p>发表日期：<a href="http://ZhaoJiu.github.io/2019/04/21/mc/三角/">April 21st 2019, 7:22:11 pm</a>
-            </p><p>更新日期：<a href="http://ZhaoJiu.github.io/2019/04/21/mc/三角/">April 21st 2019, 7:22:54 pm</a>
+            </p><p>原文链接：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/java内部类/">http://ZhaoJiu.github.io/2019/04/21/JavaSE/java内部类/</a>
+            </p><p>发表日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/java内部类/">April 21st 2019, 7:56:20 pm</a>
+            </p><p>更新日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/java内部类/">April 21st 2019, 8:24:27 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -422,12 +422,17 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/21/JavaSE/线程池/" title="JAVA SE 13  线程池">
+                    <div class="nextTitle">JAVA SE 13  线程池</div>
+                </a>
+            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/03/基于Jenkins与Github构建一个基础持续集成环境 (三)/" title="基于Jenkins与Github构建一个基础持续集成环境(三)">
-                    <div class="prevTitle">基于Jenkins与Github构建一个基础持续集成环境(三)</div>
+                <a href="/2019/04/21/JavaSE/网络编程/" title="JAVA SE 11 网络编程">
+                    <div class="prevTitle">JAVA SE 11 网络编程</div>
                 </a>
             
         </li>
@@ -539,7 +544,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#内部类的种类？"><span class="toc-number">1.</span> <span class="toc-text">内部类的种类？</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -590,9 +595,181 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 4
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -608,7 +785,27 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/mc/三角/">english</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/全栈计划/">JAVA EE + 高级架构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/正则表达式/">JAVA SE 14 异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/网络编程/">JAVA SE 11 网络编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java内部类/">JAVA SE 12 内部类</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/线程池/">JAVA SE 13  线程池</a>
         </li>
     
     
@@ -622,7 +819,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/01/基于Jenkins与Github构建一个基础持续集成环境(一)/">基于Jenkins与Github构建一个基础持续集成环境(一)</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/控制语句/">JAVA SE 03 控制语句</a>
         </li>
     
     
@@ -636,12 +833,97 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="/2019/04/03/基于Jenkins与Github构建一个基础持续集成环境 (二)/">基于Jenkins与Github构建一个基础持续集成环境(二)</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/多线程/">JAVA SE 10 多线程</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="/2019/04/03/基于Jenkins与Github构建一个基础持续集成环境 (三)/">基于Jenkins与Github构建一个基础持续集成环境(三)</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/io流技术/">JAVA SE 09 IO流技术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java常用类/">JAVA SE 07 java常用类</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java容器/">JAVA SE 08 java容器</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数组/">JAVA SE 04 数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数据类型和运算符/">JAVA SE 02 数据类型和运算符</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/初始java/">JAVA SE 01 初始java</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/index/">JAVA SE 总览</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/异常处理/">JAVA SE 06 异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/面向对象/">JAVA SE 04 面向对象</a>
         </li>
     
     </ul></div>

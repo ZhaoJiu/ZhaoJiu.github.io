@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="ZhaoJiu">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="ZhaoJiu">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>JAVA SE 09 IO流技术 · ZhaoJiu&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">ZhaoJiu&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">JAVA SE 09 IO流技术</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">ZhaoJiu's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            JAVA SE 09 IO流技术
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h6 id="IO是什么意思？"><a href="#IO是什么意思？" class="headerlink" title="IO是什么意思？"></a>IO是什么意思？</h6><a id="more"></a>
+<p>IO是指input和outpu指的是输入和输出</p>
+<h6 id="字节流和字符流有什么区别，输入流和输出流有什么区别？"><a href="#字节流和字符流有什么区别，输入流和输出流有什么区别？" class="headerlink" title="字节流和字符流有什么区别，输入流和输出流有什么区别？"></a>字节流和字符流有什么区别，输入流和输出流有什么区别？</h6><ul>
+<li>字符流和字节流是流的一种划分，按照数据流的处理单位来划分的。两类都分为输入和输出操作。</li>
+<li>在字节流中输出数据使用outputStream完成，输入数据使用inputStream完成。</li>
+<li>在字符流中输出数据使用Writer完成，输入数据使用Reader完成。</li>
+<li>字符流处理的单位为2个字节的unicode字符，分别是操作字符，字符数组和字符串。</li>
+<li>字节流的处理单位为1个字节，操作的是字节和字节数组。</li>
+<li>字节流是用来处理2进制数据，但实际中，很多数据是文本，所有提出了字符流的概念，它是按照虚拟机的编码来处理的。</li>
+<li>也就是2者之间要进行字符集的转化，通过InputStreamReader,OutputStreamWriter来转换，实际上是通过byte[]和String来关联</li>
+</ul>
+<h6 id="节点流和处理流有什么区别？"><a href="#节点流和处理流有什么区别？" class="headerlink" title="节点流和处理流有什么区别？"></a>节点流和处理流有什么区别？</h6><ul>
+<li>节点流和处理流是按照功能的不同划分。</li>
+<li>节点流可以从或是向一个特定的地方(节点)读写数据。</li>
+<li>处理流是对一个已存在流的连接和封装，通过所封装流的功能调用实现数据读写。</li>
+</ul>
+<h6 id="InputStream和OutputStream基本特点是？"><a href="#InputStream和OutputStream基本特点是？" class="headerlink" title="InputStream和OutputStream基本特点是？"></a>InputStream和OutputStream基本特点是？</h6><p>二者都是字节流的抽象父类。以字节为单位处理数据，每次读取或写入一个字节。适合处理二进制文件。</p>
+<h6 id="Reader和Writer的基本特点是？"><a href="#Reader和Writer的基本特点是？" class="headerlink" title="Reader和Writer的基本特点是？"></a>Reader和Writer的基本特点是？</h6><p>二者都是字符流的抽象父类。以字符为基本处理单位，每次读取或写入一个字符，适合处理纯文本文件。</p>
+<h6 id="一个基本的文件复制程序"><a href="#一个基本的文件复制程序" class="headerlink" title="一个基本的文件复制程序"></a>一个基本的文件复制程序</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createAndSave</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 创建数据源文件</span></span><br><span class="line">	File file = <span class="keyword">new</span> File(path);</span><br><span class="line">	<span class="comment">// 搭建输入流管道</span></span><br><span class="line">	InputStream stream = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">	<span class="comment">// 创建目的地文件</span></span><br><span class="line">	File file1 = <span class="keyword">new</span> File(path);</span><br><span class="line">	<span class="comment">// 搭建输出流管道</span></span><br><span class="line">	OutputStream outputStream = <span class="keyword">new</span> FileOutputStream(file1);</span><br><span class="line">	<span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">//每次向源文件读出一个字节，就向目标文件写入一个字节</span></span><br><span class="line">	<span class="keyword">while</span>((b=stream.read()) != -<span class="number">1</span>)</span><br><span class="line">		outputStream.write(b);</span><br><span class="line">	<span class="comment">//读写完毕之后关闭流 流是先开的后关 后开的先关</span></span><br><span class="line">	outputStream.close();</span><br><span class="line">	stream.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="BufferedInputStream和BufferedOutputStream的特点是？"><a href="#BufferedInputStream和BufferedOutputStream的特点是？" class="headerlink" title="BufferedInputStream和BufferedOutputStream的特点是？"></a>BufferedInputStream和BufferedOutputStream的特点是？</h6><ul>
+<li>它们是缓冲字节流，分别是缓存字节输入流和缓冲字节输出流。</li>
+<li>缓冲流是处理流，它不直接连接数据源，而是以一个节点流为参数，在节点流的基础上提供一些操作。</li>
+<li>不带缓冲的流的处理特点是：读取一个字节，存储一个字节。因而会使得数据的传输较慢。</li>
+<li>带缓冲流的处理特点是：读取数据，待数据达到了缓冲的大小，便存储数据，重复，直至读取完毕。</li>
+<li>优点是减少了对硬盘的读取次数，降低了对硬盘的损耗。提高了文件的传输效率。</li>
+</ul>
+<h6 id="使用BufferedReader和BufferedWriter完成文件的复制程序"><a href="#使用BufferedReader和BufferedWriter完成文件的复制程序" class="headerlink" title="使用BufferedReader和BufferedWriter完成文件的复制程序"></a>使用BufferedReader和BufferedWriter完成文件的复制程序</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyUseBuffer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 准备从文件读数据到程序</span></span><br><span class="line">	<span class="comment">//创建读取对象Reader</span></span><br><span class="line">	Reader reader = <span class="keyword">new</span> FileReader(path);</span><br><span class="line">	<span class="comment">// 创建缓冲流包装Reader</span></span><br><span class="line">	BufferedReader br = <span class="keyword">new</span> BufferedReader(reader);</span><br><span class="line">	<span class="comment">// 准备从程序写到文件</span></span><br><span class="line">	<span class="comment">// 创建写入对象Writer</span></span><br><span class="line">	Writer writer = <span class="keyword">new</span> FileWriter(path);</span><br><span class="line">	<span class="comment">//创建缓冲流包装类Writer</span></span><br><span class="line">	BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(writer);</span><br><span class="line">	<span class="comment">//使用循环边读边写</span></span><br><span class="line">	String str = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">for</span> ((str = br.readLine()) != <span class="keyword">null</span> ) &#123;</span><br><span class="line">		bw.write(str);</span><br><span class="line">		bw.newLine();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 清空缓冲区</span></span><br><span class="line">	bw.flush();</span><br><span class="line">	<span class="comment">//关闭流</span></span><br><span class="line">	bw.close();</span><br><span class="line">	br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="InputStreamReader和OutputStreamWriter的作用是？"><a href="#InputStreamReader和OutputStreamWriter的作用是？" class="headerlink" title="InputStreamReader和OutputStreamWriter的作用是？"></a>InputStreamReader和OutputStreamWriter的作用是？</h6><p>二者都是转换流，前者是输入转化流，后者是输出转换流，都是将字节流转换成字符流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">modifyStream</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//获取一个字节流</span></span><br><span class="line">	InputStream is = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line">	<span class="comment">//将字节流转换成字符流</span></span><br><span class="line">	InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(is,<span class="string">"utf-8"</span>);</span><br><span class="line">	<span class="comment">//打印数据</span></span><br><span class="line">	String str = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">while</span> ((str = isr.read()) != <span class="keyword">null</span> ) &#123;</span><br><span class="line">		System.out.println(str);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//关闭流</span></span><br><span class="line">	isr.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="字节数组和其它数据类型的相互转换"><a href="#字节数组和其它数据类型的相互转换" class="headerlink" title="字节数组和其它数据类型的相互转换"></a>字节数组和其它数据类型的相互转换</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">byteArray</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//定义一个boolean类型的变量</span></span><br><span class="line">	Boolean bool = <span class="keyword">false</span>;</span><br><span class="line">	ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">	DataOutputStream dos = <span class="keyword">new</span> DataOutputStream(baos);</span><br><span class="line">	dos.write(bool);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">byte</span>[] b = baos.toByteArray();</span><br><span class="line"></span><br><span class="line">	<span class="comment">//接下来 可以将byte数组构建成一个数据包发送出去</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="什么是序列化和反序列化？"><a href="#什么是序列化和反序列化？" class="headerlink" title="什么是序列化和反序列化？"></a>什么是序列化和反序列化？</h6><pre><code>将对象以byte流的形式写入到文件中称之为序列化。
+将要被序列化的对象要实现Serializable接口。
+将文件中的数据以byte流的形式读取到程序中。
+静态的是不能被序列化的，序列化只能对堆中的对象序列化，不能对方法区中的对象序列化。
+在不需要序列化的字段前面加上transient即可
+</code></pre><h6 id="transient的作用是？"><a href="#transient的作用是？" class="headerlink" title="transient的作用是？"></a>transient的作用是？</h6><pre><code>不希望序列化的属性，可以添加transient关键字，密码字段是非常敏感的字段，所以在序列化时，不允许被写到文件。
+</code></pre><h6 id="完成目录的copy代码。-伪代码"><a href="#完成目录的copy代码。-伪代码" class="headerlink" title="完成目录的copy代码。(伪代码)"></a>完成目录的copy代码。(伪代码)</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从源目录拷贝文件到目标目录</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CopyDir</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		copyDirectory(<span class="string">"F:/UTAU"</span>,<span class="string">"G:/CloudMusic"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 复制单个文件</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">(File sourceFile,File targetFile)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 新建文件输入流</span></span><br><span class="line">		BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> InputStream(sourceFile));</span><br><span class="line">		<span class="comment">// 新建文件输出流</span></span><br><span class="line">		BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> OutputStream(targetFile));</span><br><span class="line">		<span class="comment">// 缓冲数组</span></span><br><span class="line">		byt[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>*<span class="number">5</span>];</span><br><span class="line">		<span class="keyword">int</span> len ;</span><br><span class="line">		<span class="keyword">while</span> ((len = bis.read(b)) != -<span class="number">1</span>)</span><br><span class="line">			bos.write(b,<span class="number">0</span>,len);</span><br><span class="line">		<span class="comment">// 刷新此缓冲的输出流</span></span><br><span class="line">		bos.flush();</span><br><span class="line">		<span class="comment">// 关闭流</span></span><br><span class="line">		bos.close();</span><br><span class="line">		bis.cloes();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 复制目录</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyDirectory</span><span class="params">(String sourceDir,String targetDir)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 检查源目录是否存在</span></span><br><span class="line">		File fileSourceDir = <span class="keyword">new</span> File(sourceDir);</span><br><span class="line">		<span class="keyword">if</span> (!fileSourceDir.exists() || !fileSourceDir.isDirectory()) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 检查目标目录 如果不存在 则创建</span></span><br><span class="line">		File fileTargetDir = <span class="keyword">new</span> File(targetDir);</span><br><span class="line">		<span class="keyword">if</span> (!fileTargetDir.exists()) &#123;</span><br><span class="line">			fileTargetDir.mkdirs();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 遍历源目录下的文件和目录</span></span><br><span class="line">		File[] files = fileSourceDir.listFiles();</span><br><span class="line">		<span class="keyword">for</span> (File file : files) &#123;</span><br><span class="line">			<span class="comment">//复制文件</span></span><br><span class="line">			<span class="keyword">if</span> (file.isFile()) &#123;</span><br><span class="line">				<span class="comment">//源文件</span></span><br><span class="line">				File sourceFile = file;</span><br><span class="line">				<span class="comment">//目标文件</span></span><br><span class="line">				File targetFile = <span class="keyword">new</span> File(fileTargetDir,file.getName());</span><br><span class="line">				copyFile(sourceFile,targetFile);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//递归复制子目录</span></span><br><span class="line">			<span class="keyword">if</span> (file.isDirectory()) &#123;</span><br><span class="line">				<span class="comment">// 准备复制的源文件夹</span></span><br><span class="line">				String subSourceDir = sourceDir+File.separator+file.getName();</span><br><span class="line">				<span class="comment">// 准备复制的目标文件夹</span></span><br><span class="line">				String subTargetDir = targetDir+File.separator+file.getName();</span><br><span class="line">				<span class="comment">// 复制文件夹的递归基链</span></span><br><span class="line">				copyDirectory(subSourceDir,subTargetDir); </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://ZhaoJiu.github.io">ZhaoJiu</a>
+            </p><p>原文链接：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/io流技术/">http://ZhaoJiu.github.io/2019/04/21/JavaSE/io流技术/</a>
+            </p><p>发表日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/io流技术/">April 21st 2019, 7:56:20 pm</a>
+            </p><p>更新日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/io流技术/">April 21st 2019, 8:24:19 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/21/JavaSE/多线程/" title="JAVA SE 10 多线程">
+                    <div class="nextTitle">JAVA SE 10 多线程</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/21/JavaSE/java容器/" title="JAVA SE 08 java容器">
+                    <div class="prevTitle">JAVA SE 08 java容器</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:zhaojiuvip@163.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/ZhaoJiu" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#IO是什么意思？"><span class="toc-number">1.</span> <span class="toc-text">IO是什么意思？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#字节流和字符流有什么区别，输入流和输出流有什么区别？"><span class="toc-number">2.</span> <span class="toc-text">字节流和字符流有什么区别，输入流和输出流有什么区别？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#节点流和处理流有什么区别？"><span class="toc-number">3.</span> <span class="toc-text">节点流和处理流有什么区别？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#InputStream和OutputStream基本特点是？"><span class="toc-number">4.</span> <span class="toc-text">InputStream和OutputStream基本特点是？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Reader和Writer的基本特点是？"><span class="toc-number">5.</span> <span class="toc-text">Reader和Writer的基本特点是？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#一个基本的文件复制程序"><span class="toc-number">6.</span> <span class="toc-text">一个基本的文件复制程序</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#BufferedInputStream和BufferedOutputStream的特点是？"><span class="toc-number">7.</span> <span class="toc-text">BufferedInputStream和BufferedOutputStream的特点是？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用BufferedReader和BufferedWriter完成文件的复制程序"><span class="toc-number">8.</span> <span class="toc-text">使用BufferedReader和BufferedWriter完成文件的复制程序</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#InputStreamReader和OutputStreamWriter的作用是？"><span class="toc-number">9.</span> <span class="toc-text">InputStreamReader和OutputStreamWriter的作用是？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#字节数组和其它数据类型的相互转换"><span class="toc-number">10.</span> <span class="toc-text">字节数组和其它数据类型的相互转换</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#什么是序列化和反序列化？"><span class="toc-number">11.</span> <span class="toc-text">什么是序列化和反序列化？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#transient的作用是？"><span class="toc-number">12.</span> <span class="toc-text">transient的作用是？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#完成目录的copy代码。-伪代码"><span class="toc-number">13.</span> <span class="toc-text">完成目录的copy代码。(伪代码)</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 16
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/全栈计划/">JAVA EE + 高级架构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/正则表达式/">JAVA SE 14 异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/网络编程/">JAVA SE 11 网络编程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java内部类/">JAVA SE 12 内部类</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/线程池/">JAVA SE 13  线程池</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/控制语句/">JAVA SE 03 控制语句</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/多线程/">JAVA SE 10 多线程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/io流技术/">JAVA SE 09 IO流技术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java常用类/">JAVA SE 07 java常用类</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java容器/">JAVA SE 08 java容器</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数组/">JAVA SE 04 数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数据类型和运算符/">JAVA SE 02 数据类型和运算符</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/初始java/">JAVA SE 01 初始java</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/index/">JAVA SE 总览</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/异常处理/">JAVA SE 06 异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/面向对象/">JAVA SE 04 面向对象</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Jenkins"><span class="iconfont-archer">&#xe606;</span>Jenkins</span>
+    
+        <span class="sidebar-tag-name" data-tags="Github"><span class="iconfont-archer">&#xe606;</span>Github</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="持续集成"><span class="iconfont-archer">&#xe606;</span>持续集成</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "ZhaoJiu"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
