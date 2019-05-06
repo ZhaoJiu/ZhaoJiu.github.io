@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">907</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">887</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,20 +395,30 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h5 id="为什么需要包装类，包装类的作用是什么？"><a href="#为什么需要包装类，包装类的作用是什么？" class="headerlink" title="为什么需要包装类，包装类的作用是什么？"></a>为什么需要包装类，包装类的作用是什么？</h5><a id="more"></a>
-<p>&emsp;&emsp;因为java是面向对象的语言，而java基本数据类型不是面向对象的，在实际操作中，经常需要将基本数据类型转化成对象，便于操作。<br>&emsp;&emsp;作用是作为和基本数据类型对应的类类类型而存在，方便涉及到对对象的操作。<br>&emsp;&emsp;包含每种基本数据类型的相关的属性以及相关的操作方法。  </p>
-<h5 id="自动装箱和自动拆箱是指？"><a href="#自动装箱和自动拆箱是指？" class="headerlink" title="自动装箱和自动拆箱是指？"></a>自动装箱和自动拆箱是指？</h5><p>&emsp;&emsp;包装类和基本数据类型的相互转化。</p>
-<h5 id="为什么String类是不可变字符序列？从String的源码分析，给出解释。"><a href="#为什么String类是不可变字符序列？从String的源码分析，给出解释。" class="headerlink" title="为什么String类是不可变字符序列？从String的源码分析，给出解释。"></a>为什么String类是不可变字符序列？从String的源码分析，给出解释。</h5><p>&emsp;&emsp;字符串是常量，它的值在创建过后不可更改，String对象是不可变的，所以可以共享。但是String类的底层结构是char类型的数组组合出来的value，而这个数组使用的是final进行修饰的。</p>
-<h5 id="String类的equals方法和Obeject类的equals方法有什么区别？"><a href="#String类的equals方法和Obeject类的equals方法有什么区别？" class="headerlink" title="String类的equals方法和Obeject类的equals方法有什么区别？"></a>String类的equals方法和Obeject类的equals方法有什么区别？</h5><p>&emsp;&emsp;String类的equals方法：</p>
-<pre><code>- 如果2个String对象的内存地址（引用）相同，那么`return true`  
-- 如果2个String对象的内存地址（引用）不相同，那么进行类型判断，如果不是String类型，那么直接返回false，如果是String类型，则进行向下类型转换，转换成String。然后改变char类型的数组，比较2个数组上对应的位置的值是否相同，如果相同返回true，否则返回false  
-</code></pre><h5 id="了解String类中的其它使用方法。"><a href="#了解String类中的其它使用方法。" class="headerlink" title="了解String类中的其它使用方法。"></a>了解String类中的其它使用方法。</h5><h5 id="StringBuffer和StringBuilder的区别和联系是？"><a href="#StringBuffer和StringBuilder的区别和联系是？" class="headerlink" title="StringBuffer和StringBuilder的区别和联系是？"></a>StringBuffer和StringBuilder的区别和联系是？</h5><p>&emsp;&emsp;StringBuffer和StringBuilder都是可变字符序列，底层都是char类型的数组。<br>&emsp;&emsp;StringBuffer效率低，但是线程安全。<br>&emsp;&emsp;StringBuilder效率高，但是线程不安全。</p>
-<h5 id="使用simpleDateFormat类来实现日期和字符串之间的转换？"><a href="#使用simpleDateFormat类来实现日期和字符串之间的转换？" class="headerlink" title="使用simpleDateFormat类来实现日期和字符串之间的转换？"></a>使用simpleDateFormat类来实现日期和字符串之间的转换？</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符串转日期</span></span><br><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">sdf.parse(<span class="string">"1900-3-13"</span>);</span><br><span class="line"><span class="comment">//日期转字符串</span></span><br><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">sdf.format(<span class="keyword">new</span> Date());</span><br></pre></td></tr></table></figure>
-<h5 id="用程序查看-Date-SimpleDateFormat-Calendar-的用法"><a href="#用程序查看-Date-SimpleDateFormat-Calendar-的用法" class="headerlink" title="用程序查看    Date \ SimpleDateFormat \ Calendar 的用法"></a>用程序查看    Date \ SimpleDateFormat \ Calendar 的用法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//Date的用法 </span></span><br><span class="line">	Date date = <span class="keyword">new</span> Date();</span><br><span class="line">	System.out.println(date.toString());</span><br><span class="line">	<span class="comment">//SimpleDateFormat的用法</span></span><br><span class="line">	SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">	String str = sdf.format(<span class="keyword">new</span> Date());</span><br><span class="line">	<span class="comment">//Calendar的用法</span></span><br><span class="line">	GrengorianCalendar cd = <span class="keyword">new</span> GrengorianCalendar();</span><br><span class="line">	cd.set(Calendar.YEAR,<span class="number">2018</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="File类能代表一个目录吗-lt-能-gt"><a href="#File类能代表一个目录吗-lt-能-gt" class="headerlink" title="File类能代表一个目录吗? &lt;能&gt;"></a>File类能代表一个目录吗? &lt;能&gt;</h5><h5 id="File类的mikdir和mikdirs有什么区别？"><a href="#File类的mikdir和mikdirs有什么区别？" class="headerlink" title="File类的mikdir和mikdirs有什么区别？"></a>File类的mikdir和mikdirs有什么区别？</h5><p>&emsp;&emsp;mikdir只能在已经存在的目录中创建文件夹，而mikdirs可以在不存在的目录中创建文件夹  </p>
-<h5 id="使用File类模拟实现DOS的dir指令和dir-s指令。"><a href="#使用File类模拟实现DOS的dir指令和dir-s指令。" class="headerlink" title="使用File类模拟实现DOS的dir指令和dir/s指令。"></a>使用File类模拟实现DOS的dir指令和dir/s指令。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Class Main &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		File file = <span class="keyword">new</span> File(<span class="string">"E:/file1"</span>);</span><br><span class="line">		showTree(file,<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showTree</span><span class="params">(File file,<span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">		File[] files = file.listFiles();</span><br><span class="line">		<span class="keyword">for</span> (File f: files) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;level;i++) &#123;</span><br><span class="line">				System.out.print(<span class="string">"-"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (f.isDirectory()) &#123;</span><br><span class="line">				System.out.prinln(f.getName());</span><br><span class="line">				showTree(f,level+<span class="number">1</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(f.getName());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="使用递归算法，完成一个完整的目录树"><a href="#使用递归算法，完成一个完整的目录树" class="headerlink" title="使用递归算法，完成一个完整的目录树"></a>使用递归算法，完成一个完整的目录树</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Class FileTree &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		File f = <span class="keyword">new</span> File(<span class="string">"E:/file1"</span>);</span><br><span class="line">		printFile(f,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printFile</span><span class="params">(File file,<span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;level;i++) &#123;</span><br><span class="line">			System.out.print(<span class="string">"-"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(file.getName());</span><br><span class="line">		<span class="keyword">if</span> (f.isDirectory()) &#123;</span><br><span class="line">			File[] files = file.listFiles();</span><br><span class="line">			<span class="keyword">for</span> (File f：files) &#123;</span><br><span class="line">				printFile(f,level+<span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="什么时候使用枚举，枚举的定义是什么？"><a href="#什么时候使用枚举，枚举的定义是什么？" class="headerlink" title="什么时候使用枚举，枚举的定义是什么？"></a>什么时候使用枚举，枚举的定义是什么？</h5><p>&emsp;&emsp;当需要定义一组常量的时候，需要使用枚举类型。只能取特定值中的一个，需要使用Enum关键字。所有的枚举类型都隐性的继承之<code>java.lang.Enum</code>。<br>&emsp;&emsp;例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Month &#123;JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMB ER,OCTOBER,NOVEMBER,DECEMBER&#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="为什么需要包装类，包装类的作用是什么？"><a href="#为什么需要包装类，包装类的作用是什么？" class="headerlink" title="为什么需要包装类，包装类的作用是什么？"></a>为什么需要包装类，包装类的作用是什么？</h3><a id="more"></a>
+<ul>
+<li>因为java是面向对象的语言，而java基本数据类型不是面向对象的，在实际操作中，经常需要将基本数据类型转化成对象，便于操作。  </li>
+<li>作用是作为和基本数据类型对应的类类类型而存在，方便涉及到对对象的操作。  </li>
+<li>包含每种基本数据类型的相关的属性以及相关的操作方法。  </li>
+</ul>
+<h3 id="自动装箱和自动拆箱是指？"><a href="#自动装箱和自动拆箱是指？" class="headerlink" title="自动装箱和自动拆箱是指？"></a>自动装箱和自动拆箱是指？</h3><p>&emsp;&emsp;包装类和基本数据类型的相互转化。</p>
+<h3 id="为什么String类是不可变字符序列？从String的源码分析，给出解释。"><a href="#为什么String类是不可变字符序列？从String的源码分析，给出解释。" class="headerlink" title="为什么String类是不可变字符序列？从String的源码分析，给出解释。"></a>为什么String类是不可变字符序列？从String的源码分析，给出解释。</h3><p>&emsp;&emsp;字符串是常量，它的值在创建过后不可更改，String对象是不可变的，所以可以共享。但是String类的底层结构是char类型的数组组合出来的value，而这个数组使用的是final进行修饰的。</p>
+<h3 id="String类的equals方法和Obeject类的equals方法有什么区别？"><a href="#String类的equals方法和Obeject类的equals方法有什么区别？" class="headerlink" title="String类的equals方法和Obeject类的equals方法有什么区别？"></a>String类的equals方法和Obeject类的equals方法有什么区别？</h3><p>String类的equals方法：</p>
+<ul>
+<li>如果2个String对象的内存地址（引用）相同，那么<code>return true</code>  </li>
+<li>如果2个String对象的内存地址（引用）不相同，那么进行类型判断，如果不是String类型，那么直接返回false，如果是String类型，则进行向下类型转换，转换成String。然后改变char类型的数组，比较2个数组上对应的位置的值是否相同，如果相同返回true，否则返回false  </li>
+</ul>
+<h3 id="了解String类中的其它使用方法。"><a href="#了解String类中的其它使用方法。" class="headerlink" title="了解String类中的其它使用方法。"></a>了解String类中的其它使用方法。</h3><h3 id="StringBuffer和StringBuilder的区别和联系是？"><a href="#StringBuffer和StringBuilder的区别和联系是？" class="headerlink" title="StringBuffer和StringBuilder的区别和联系是？"></a>StringBuffer和StringBuilder的区别和联系是？</h3><ul>
+<li>StringBuffer和StringBuilder都是可变字符序列，底层都是char类型的数组。  </li>
+<li>StringBuffer效率低，但是线程安全。  </li>
+<li>StringBuilder效率高，但是线程不安全。</li>
+</ul>
+<h3 id="使用simpleDateFormat类来实现日期和字符串之间的转换？"><a href="#使用simpleDateFormat类来实现日期和字符串之间的转换？" class="headerlink" title="使用simpleDateFormat类来实现日期和字符串之间的转换？"></a>使用simpleDateFormat类来实现日期和字符串之间的转换？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符串转日期</span></span><br><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">sdf.parse(<span class="string">"1900-3-13"</span>);</span><br><span class="line"><span class="comment">//日期转字符串</span></span><br><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">sdf.format(<span class="keyword">new</span> Date());</span><br></pre></td></tr></table></figure>
+<h3 id="用程序查看-Date-SimpleDateFormat-Calendar-的用法"><a href="#用程序查看-Date-SimpleDateFormat-Calendar-的用法" class="headerlink" title="用程序查看    Date \ SimpleDateFormat \ Calendar 的用法"></a>用程序查看    Date \ SimpleDateFormat \ Calendar 的用法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//Date的用法 </span></span><br><span class="line">	Date date = <span class="keyword">new</span> Date();</span><br><span class="line">	System.out.println(date.toString());</span><br><span class="line">	<span class="comment">//SimpleDateFormat的用法</span></span><br><span class="line">	SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">	String str = sdf.format(<span class="keyword">new</span> Date());</span><br><span class="line">	<span class="comment">//Calendar的用法</span></span><br><span class="line">	GrengorianCalendar cd = <span class="keyword">new</span> GrengorianCalendar();</span><br><span class="line">	cd.set(Calendar.YEAR,<span class="number">2018</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="File类能代表一个目录吗-lt-能-gt"><a href="#File类能代表一个目录吗-lt-能-gt" class="headerlink" title="File类能代表一个目录吗? &lt;能&gt;"></a>File类能代表一个目录吗? &lt;能&gt;</h3><h3 id="File类的mikdir和mikdirs有什么区别？"><a href="#File类的mikdir和mikdirs有什么区别？" class="headerlink" title="File类的mikdir和mikdirs有什么区别？"></a>File类的mikdir和mikdirs有什么区别？</h3><p>&emsp;&emsp;mikdir只能在已经存在的目录中创建文件夹，而mikdirs可以在不存在的目录中创建文件夹  </p>
+<h3 id="使用File类模拟实现DOS的dir指令和dir-s指令。"><a href="#使用File类模拟实现DOS的dir指令和dir-s指令。" class="headerlink" title="使用File类模拟实现DOS的dir指令和dir/s指令。"></a>使用File类模拟实现DOS的dir指令和dir/s指令。</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Class Main &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		File file = <span class="keyword">new</span> File(<span class="string">"E:/file1"</span>);</span><br><span class="line">		showTree(file,<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showTree</span><span class="params">(File file,<span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">		File[] files = file.listFiles();</span><br><span class="line">		<span class="keyword">for</span> (File f: files) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;level;i++) &#123;</span><br><span class="line">				System.out.print(<span class="string">"-"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (f.isDirectory()) &#123;</span><br><span class="line">				System.out.prinln(f.getName());</span><br><span class="line">				showTree(f,level+<span class="number">1</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(f.getName());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用递归算法，完成一个完整的目录树"><a href="#使用递归算法，完成一个完整的目录树" class="headerlink" title="使用递归算法，完成一个完整的目录树"></a>使用递归算法，完成一个完整的目录树</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Class FileTree &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		File f = <span class="keyword">new</span> File(<span class="string">"E:/file1"</span>);</span><br><span class="line">		printFile(f,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printFile</span><span class="params">(File file,<span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;level;i++) &#123;</span><br><span class="line">			System.out.print(<span class="string">"-"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(file.getName());</span><br><span class="line">		<span class="keyword">if</span> (f.isDirectory()) &#123;</span><br><span class="line">			File[] files = file.listFiles();</span><br><span class="line">			<span class="keyword">for</span> (File f：files) &#123;</span><br><span class="line">				printFile(f,level+<span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="什么时候使用枚举，枚举的定义是什么？"><a href="#什么时候使用枚举，枚举的定义是什么？" class="headerlink" title="什么时候使用枚举，枚举的定义是什么？"></a>什么时候使用枚举，枚举的定义是什么？</h3><p>当需要定义一组常量的时候，需要使用枚举类型。只能取特定值中的一个，需要使用Enum关键字。所有的枚举类型都隐性的继承之<code>java.lang.Enum</code>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Month &#123;JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMB ER,OCTOBER,NOVEMBER,DECEMBER&#125;</span><br></pre></td></tr></table></figure></p>
 
     </article>
     <!-- license  -->
@@ -417,7 +427,7 @@ height:50vh;
             <p>原文作者：<a href="http://ZhaoJiu.github.io">ZhaoJiu</a>
             </p><p>原文链接：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/java常用类/">http://ZhaoJiu.github.io/2019/04/21/JavaSE/java常用类/</a>
             </p><p>发表日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/java常用类/">April 21st 2019, 7:56:20 pm</a>
-            </p><p>更新日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/java常用类/">April 21st 2019, 8:24:13 pm</a>
+            </p><p>更新日期：<a href="http://ZhaoJiu.github.io/2019/04/21/JavaSE/java常用类/">May 6th 2019, 10:02:51 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -547,7 +557,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#为什么需要包装类，包装类的作用是什么？"><span class="toc-number">1.</span> <span class="toc-text">为什么需要包装类，包装类的作用是什么？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自动装箱和自动拆箱是指？"><span class="toc-number">2.</span> <span class="toc-text">自动装箱和自动拆箱是指？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#为什么String类是不可变字符序列？从String的源码分析，给出解释。"><span class="toc-number">3.</span> <span class="toc-text">为什么String类是不可变字符序列？从String的源码分析，给出解释。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#String类的equals方法和Obeject类的equals方法有什么区别？"><span class="toc-number">4.</span> <span class="toc-text">String类的equals方法和Obeject类的equals方法有什么区别？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#了解String类中的其它使用方法。"><span class="toc-number">5.</span> <span class="toc-text">了解String类中的其它使用方法。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#StringBuffer和StringBuilder的区别和联系是？"><span class="toc-number">6.</span> <span class="toc-text">StringBuffer和StringBuilder的区别和联系是？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用simpleDateFormat类来实现日期和字符串之间的转换？"><span class="toc-number">7.</span> <span class="toc-text">使用simpleDateFormat类来实现日期和字符串之间的转换？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#用程序查看-Date-SimpleDateFormat-Calendar-的用法"><span class="toc-number">8.</span> <span class="toc-text">用程序查看    Date \ SimpleDateFormat \ Calendar 的用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#File类能代表一个目录吗-lt-能-gt"><span class="toc-number">9.</span> <span class="toc-text">File类能代表一个目录吗? &lt;能&gt;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#File类的mikdir和mikdirs有什么区别？"><span class="toc-number">10.</span> <span class="toc-text">File类的mikdir和mikdirs有什么区别？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用File类模拟实现DOS的dir指令和dir-s指令。"><span class="toc-number">11.</span> <span class="toc-text">使用File类模拟实现DOS的dir指令和dir/s指令。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用递归算法，完成一个完整的目录树"><span class="toc-number">12.</span> <span class="toc-text">使用递归算法，完成一个完整的目录树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#什么时候使用枚举，枚举的定义是什么？"><span class="toc-number">13.</span> <span class="toc-text">什么时候使用枚举，枚举的定义是什么？</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么需要包装类，包装类的作用是什么？"><span class="toc-number">1.</span> <span class="toc-text">为什么需要包装类，包装类的作用是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动装箱和自动拆箱是指？"><span class="toc-number">2.</span> <span class="toc-text">自动装箱和自动拆箱是指？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么String类是不可变字符序列？从String的源码分析，给出解释。"><span class="toc-number">3.</span> <span class="toc-text">为什么String类是不可变字符序列？从String的源码分析，给出解释。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String类的equals方法和Obeject类的equals方法有什么区别？"><span class="toc-number">4.</span> <span class="toc-text">String类的equals方法和Obeject类的equals方法有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解String类中的其它使用方法。"><span class="toc-number">5.</span> <span class="toc-text">了解String类中的其它使用方法。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StringBuffer和StringBuilder的区别和联系是？"><span class="toc-number">6.</span> <span class="toc-text">StringBuffer和StringBuilder的区别和联系是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用simpleDateFormat类来实现日期和字符串之间的转换？"><span class="toc-number">7.</span> <span class="toc-text">使用simpleDateFormat类来实现日期和字符串之间的转换？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用程序查看-Date-SimpleDateFormat-Calendar-的用法"><span class="toc-number">8.</span> <span class="toc-text">用程序查看    Date \ SimpleDateFormat \ Calendar 的用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File类能代表一个目录吗-lt-能-gt"><span class="toc-number">9.</span> <span class="toc-text">File类能代表一个目录吗? &lt;能&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File类的mikdir和mikdirs有什么区别？"><span class="toc-number">10.</span> <span class="toc-text">File类的mikdir和mikdirs有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用File类模拟实现DOS的dir指令和dir-s指令。"><span class="toc-number">11.</span> <span class="toc-text">使用File类模拟实现DOS的dir指令和dir/s指令。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用递归算法，完成一个完整的目录树"><span class="toc-number">12.</span> <span class="toc-text">使用递归算法，完成一个完整的目录树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么时候使用枚举，枚举的定义是什么？"><span class="toc-number">13.</span> <span class="toc-text">什么时候使用枚举，枚举的定义是什么？</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -560,16 +570,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -802,6 +802,29 @@ top:50vh;
         </li>
     
     
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数据类型和运算符/">JAVA SE 02 数据类型和运算符</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
         <li class="archive-post-item">
             <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java内部类/">JAVA SE 12 内部类</a>
         </li>
@@ -809,6 +832,16 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/线程池/">JAVA SE 13  线程池</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/多线程/">JAVA SE 10 多线程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/io流技术/">JAVA SE 09 IO流技术</a>
         </li>
     
     
@@ -836,50 +869,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/多线程/">JAVA SE 10 多线程</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/io流技术/">JAVA SE 09 IO流技术</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/异常处理/">JAVA SE 06 异常处理</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java常用类/">JAVA SE 07 java常用类</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java容器/">JAVA SE 08 java容器</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数组/">JAVA SE 04 数组</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数据类型和运算符/">JAVA SE 02 数据类型和运算符</a>
         </li>
     
     
@@ -916,12 +911,26 @@ top:50vh;
     
         </ul>
     
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/21/JavaSE/数组/">JAVA SE 04 数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/异常处理/">JAVA SE 06 异常处理</a>
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href="/2019/04/21/JavaSE/java容器/">JAVA SE 08 java容器</a>
         </li>
     
     
@@ -933,14 +942,6 @@ top:50vh;
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
-    
-        <span class="sidebar-tag-name" data-tags="Jenkins"><span class="iconfont-archer">&#xe606;</span>Jenkins</span>
-    
-        <span class="sidebar-tag-name" data-tags="Github"><span class="iconfont-archer">&#xe606;</span>Github</span>
-    
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
-    
-        <span class="sidebar-tag-name" data-tags="持续集成"><span class="iconfont-archer">&#xe606;</span>持续集成</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
